@@ -1,13 +1,13 @@
 import React, { Component, useRef, useState,useMemo, Suspense, useEffect } from 'react'
 // import * as THREE from 'three'
-import { Canvas, useFrame, useLoader,useUpdate} from "react-three-fiber";
-import { softShadows, MeshWobbleMaterial, OrbitControls } from "drei";
+import { Canvas, useFrame, useLoader,useUpdate} from "@react-three/fiber";
+import { softShadows, MeshWobbleMaterial, OrbitControls } from "@react-three/drei";
 // import { useSpring, a } from "react-spring/three";
 import { Physics, usePlane, useBox, useConvexPolyhedron } from '@react-three/cannon'
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 // import { ConvexBufferGeometry, ConvexGeometry } from 'three/examples/jsm/geometries/ConvexGeometry'
 import {Link } from "react-router-dom";
-import ModelBB from '../../component/modelBB/modelBB.component'
+import { ModelBB, } from '../../component/modelBB/modelBB.component'
 
 import { useHistory } from 'react-router-dom';
 
@@ -53,12 +53,15 @@ class Homepage extends Component {
         console.log(this.props)
 
         this.push_to_history = this.push_to_history.bind(this)
+
+
     }
 
     componentDidMount() {
         setTimeout(function() { //Start the timer
-            this.setState({renderTin: true}) //After 1 second, set render to true
+            // this.setState({renderTin: true}) //After 1 second, set render to true
         }.bind(this), 10000)
+
     }
 
     push_to_history(route){
@@ -119,7 +122,7 @@ class Homepage extends Component {
 
 
                         { this.state.renderTin ?
-                            <ModelBB src={'./models/tinModelsTst2.glb'} modelId={"T"} position={[10, 5, 15]} mass={100}  rotation={[0,-Math.PI,0]}  scale={[0.3,0.3,0.3]} pmaterial={{friction:1000,restitution:0.01}} debug={true} />
+                            <ModelBB src={'./models/tinModelsTst2.glb'} modelId={"T"} position={[10, 5, 15]} mass={100}  rotation={[0,-Math.PI,0]}  scale={[0.3,0.3,0.3]} pmaterial={{friction:1000,restitution:0.01}}/>
                             : null }
                         { this.state.renderTin ?
                             <ModelBB src={'./models/tinModelsTst2.glb'} modelId={"I"} position={[10, 5, 10]} mass={100}  rotation={[0,-Math.PI,0]}  scale={[0.3,0.3,0.3]} pmaterial={{friction:1000,restitution:0.01}} />
