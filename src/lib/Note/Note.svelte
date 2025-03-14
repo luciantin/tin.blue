@@ -1,31 +1,31 @@
 <script lang="ts">
-    import {NoteType, GetProportion, GetMarginX} from "./Note";
+    import {NoteType, GetProportion, GetMarginX, GetNoteBBProportion} from "./Note";
     import {onMount} from "svelte";
 
     export let noteType: NoteType = NoteType.Default;
     export let text: string = "";
 
     $: backgroundImage = `/images/notes/${noteType}.svg`;
-    let proportion : number = 1;
-    let noteWidth = 0;
+    let proportion : number = GetProportion(noteType);
+    let noteWidth = 400;
+    let noteHeight = 400;
 
-    let elementRef: HTMLDivElement | null = null;
-    $: {
-        if (elementRef) {
-            noteWidth = elementRef.offsetWidth;
-        }
-    }
+    $: noteStyle = "width:400px; height:400px";
+    $: contentStyle = ""
 
-    GetProportion(noteType).then(_proportion => {
-        console.log(`Proportion : ${_proportion}`)
-        proportion = _proportion;
-        recalculateDimensions();
-    });
+    let noteRef: HTMLDivElement | null = null;
+    let noteContentRef: HTMLDivElement | null = null;
 
     function recalculateDimensions(): void {
-        if (elementRef) {
-            noteWidth = elementRef.offsetWidth;
+        if (noteRef) {
+            let bb = noteRef.getBoundingClientRect()
+
+            noteHeight = bb.height;
+            noteWidth = bb.width;
         }
+
+        const [Xo, Yo, Xr, Yr] = GetNoteBBProportion(noteType);
+        contentStyle = `left: ${Xo * noteWidth}px; width:${(1-Xo) * noteWidth}px; height: ${(1-Yo) * noteHeight}px; top: ${Yo * noteHeight}px;`;
     }
 
     onMount(() => {
@@ -36,15 +36,16 @@
         };
     });
 
-    const [right, left, top, bottom] = GetMarginX(noteType)
-    $: noteStyle = `height: ${noteWidth * proportion}px`;
-    $: contentStyle = `margin: ${top}px ${right}px ${bottom}px ${left}px;`
+    // const [right, left, top, bottom] = GetMarginX(noteType)
+    //$: noteStyle = "width:400px; height:400px"; //`height: ${noteHeight * proportion}px; width: ${noteWidth * proportion}px;`;
+    // $: contentStyle = `margin: ${top}px ${right}px ${bottom}px ${left}px;`
+    //$: contentStyle = ""
     //background-image: url(${backgroundImage});
 
 </script>
 
-<div class="Note" bind:this={elementRef} style={noteStyle}>
-    <div class="Note-Content" style={contentStyle}>
+<div class="Note" bind:this={noteRef} style={noteStyle}>
+    <div class="Note-Content" bind:this={noteContentRef} style={contentStyle}>
         <p>{text} {text}</p>
         <p>{text}</p>
         <p>{text}</p>
@@ -59,6 +60,7 @@
     .Note {
       position: relative;
       left: 50px;
+      top: 50px;
       display: inline-block;
       //padding: 1rem;
       min-width: 50px;
@@ -68,7 +70,6 @@
     }
 
     .Note-Bg {
-      color:red;
       position: absolute;
       top: 0;
       left: 0;

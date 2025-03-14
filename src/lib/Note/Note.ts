@@ -3,8 +3,37 @@ export enum NoteType {
     PostItv1 = "PostItv1",
 }
 
+
+// Y/X
+// ┌──────────┬────────────┐
+// │          │Yo          │
+// │          │            │
+// │  Xo      ▼  Xr        │
+// ├─────────►┌───────┐    │
+// │          │       │    │
+// │       Yr │       │    │
+// │          │       │    │
+// │          │       │    │
+// │          │       │    │
+// │          │       │    │
+// │          │       │    │
+// │          └───────┘    │
+// └───────────────────────┘
+
+// [ Xo, Yo, Xr, Yr ]
+export function GetNoteBBProportion(noteType: NoteType): [number, number, number, number] {
+    switch (noteType) {
+        case NoteType.Default:
+            return [0.18, 0.01, 0.4, 0.4];
+        case NoteType.PostItv1:
+            return [0.2, 0.3, 0.4, 0.4];
+    }
+    return [0, 0, 0, 0];
+}
+
+
 // right left top bottom
-export function GetMarginX(noteType:NoteType): [number, number, number, number]{
+export function GetMarginX(noteType: NoteType): [number, number, number, number]{
     switch (noteType) {
         case NoteType.Default:
             return [5, 30, 10, 10];
@@ -14,7 +43,16 @@ export function GetMarginX(noteType:NoteType): [number, number, number, number]{
     return [0, 0, 0, 0];
 }
 
-export async function GetProportion(noteType: NoteType): Promise<number> {
+export function GetProportion(noteType: NoteType): number {
+    switch (noteType) {
+        case NoteType.Default:
+            return 0.8508371385083714;
+        case NoteType.PostItv1:
+            return 1;
+    }
+}
+
+export async function GetProportionAsync(noteType: NoteType): Promise<number> {
     return new Promise<number>((resolve, reject) => {
         const svgImage = new Image();
         svgImage.src = `/images/notes/${noteType}.svg`;
