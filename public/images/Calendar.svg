@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" fill="none">
+
+    <defs>
+        <filter id="wall-texture" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="12" result="noise" />
+            <feBlend in="SourceGraphic" in2="noise" mode="color-dodge" />
+        </filter>
+
+        <filter id="paper-texture-calendar" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" result="noise" />
+            <feDiffuseLighting in="noise" lighting-color="#E3DAC4" surfaceScale="0.12">
+                <feDistantLight azimuth="45" elevation="55" />
+            </feDiffuseLighting>
+        </filter>
+
+        <filter id="calendar-shadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="rgba(0,0,0,0.15)" />
+        </filter>
+    </defs>
+
+    <rect width="800" height="600" fill="#ECE9E6" filter="url(#wall-texture)"  />
+
+    <rect x="100" y="75" width="600" height="450" rx="16" fill="#E0D6BE" filter="url(#paper-texture-calendar)"/>
+
+    <!-- filter="url(#paper-texture-calendar) stroke="#ccc" stroke-width="4"  -->
+
+    <!-- Row 1 -->
+    <rect x="120" y="95" width="160" height="100" fill="#ffffff" stroke="#ddd" rx="8" filter="url(#paper-texture)" />
+    <text x="200" y="150" font-size="24" fill="#333" text-anchor="middle" font-family="sans-serif">2018</text>
+
+    <rect x="320" y="95" width="160" height="100" fill="#ffffff" stroke="#ddd" rx="8" filter="url(#paper-texture)" />
+    <text x="400" y="150" font-size="24" fill="#333" text-anchor="middle" font-family="sans-serif">2019</text>
+
+    <rect x="520" y="95" width="160" height="100" fill="#ffffff" stroke="#ddd" rx="8" filter="url(#paper-texture)" />
+    <text x="600" y="150" font-size="24" fill="#333" text-anchor="middle" font-family="sans-serif">2020</text>
+
+    <!-- Row 2 -->
+    <rect x="120" y="215" width="160" height="100" fill="#ffffff" stroke="#ddd" rx="8" filter="url(#paper-texture)" />
+    <text x="200" y="270" font-size="24" fill="#333" text-anchor="middle" font-family="sans-serif">2021</text>
+
+    <rect x="320" y="215" width="160" height="100" fill="#ffffff" stroke="#ddd" rx="8" filter="url(#paper-texture)" />
+    <text x="400" y="270" font-size="24" fill="#333" text-anchor="middle" font-family="sans-serif">2022</text>
+
+    <rect x="520" y="215" width="160" height="100" fill="#ffffff" stroke="#ddd" rx="8" filter="url(#paper-texture)" />
+    <text x="600" y="270" font-size="24" fill="#333" text-anchor="middle" font-family="sans-serif">2023</text>
+
+    <!-- Row 3 -->
+    <rect x="120" y="335" width="160" height="100" fill="#ffffff" stroke="#ddd" rx="8" filter="url(#paper-texture)" />
+    <text x="200" y="390" font-size="24" fill="#333" text-anchor="middle" font-family="sans-serif">2024</text>
+
+    <rect x="320" y="335" width="160" height="100" fill="#ffffff" stroke="#ddd" rx="8" filter="url(#paper-texture)" />
+    <text x="400" y="390" font-size="24" fill="#333" text-anchor="middle" font-family="sans-serif">2025</text>
+
+    <rect x="520" y="335" width="160" height="100" fill="#ffffff" stroke="#ddd" rx="8" filter="url(#paper-texture)" />
+    <text x="600" y="390" font-size="24" fill="#333" text-anchor="middle" font-family="sans-serif">2026</text>
+
+</svg>
