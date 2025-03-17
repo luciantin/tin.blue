@@ -7,3 +7,11 @@ export enum BoardObjectType {
     Clipv1 = "Clipv1",
     Tapev1 = "Tapev1",
 }
+
+export interface BoardObjectProps {
+    type: BoardObjectType;
+    left: string;
+    top: string;
+    rotation: number;
+    sizeMultiplier?: number;
+}

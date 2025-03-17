@@ -1,11 +1,12 @@
 <script lang="ts">
     import {BackgroundType} from "./Background";
-
+    export let node : HTMLElement | null = null;
     export let backgroundType: BackgroundType = BackgroundType.Paper;
+    export let style: string = "min-height: 65vh";
 
 </script>
 
-<div class='Background-{backgroundType}' style="min-height: 65vh">
+<div class='Background-{backgroundType}' style={style} bind:this={node}>
     <slot></slot>
 </div>
 

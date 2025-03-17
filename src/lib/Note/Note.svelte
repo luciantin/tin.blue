@@ -15,7 +15,7 @@
     $: noteStyle = `width:400px; height:400px; left:${left}; top:${top}; transform: rotate(${rotation}deg); transform-origin: center;`;
     $: contentStyle = ""
 
-    let noteRef: HTMLDivElement | null = null;
+    export let noteRef: HTMLDivElement | null = null;
     let noteContentRef: HTMLDivElement | null = null;
 
     function recalculateDimensions(): void {
