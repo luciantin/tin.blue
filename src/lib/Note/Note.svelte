@@ -51,7 +51,7 @@
 <style lang="scss">
 
     .Note {
-      position: relative;
+      position: absolute;
       //left: 50px;
       //top: 50px;
       display: inline-block;

@@ -1,20 +1,24 @@
 <script lang="ts">
-import Background from "./lib/Background/Background.svelte";
-import {BackgroundType} from "./lib/Background/Background";
-import Note from "./lib/Note/Note.svelte";
-import {NoteType} from "./lib/Note/Note";
-import Icon from "./lib/Icon/Icon.svelte";
-import AboutMe from "./lib/Pages/AboutMe/AboutMe.svelte";
+    import Background from "./lib/Background/Background.svelte";
+    import {BackgroundType} from "./lib/Background/Background";
+    import Note from "./lib/Note/Note.svelte";
+    import {NoteType} from "./lib/Note/Note";
+    import Icon from "./lib/Icon/Icon.svelte";
+    import AboutMe from "./lib/Pages/AboutMe/AboutMe.svelte";
+    import Experience from "./lib/Pages/Experience/Experience.svelte";
+    import Projects from "./lib/Pages/Projects/Projects.svelte";
+
+    let aboutMeHeight = 0;
+    let experienceHeight = 0;
+
 
 </script>
 
 <main>
-    <AboutMe></AboutMe>
+    <AboutMe bind:bottomHeight={aboutMeHeight}></AboutMe>
 
-    <div style="min-height: 5vh"></div>
+    <Experience offsetTop={aboutMeHeight} bind:bottomHeight={experienceHeight}></Experience>
 
-    <Background backgroundType={BackgroundType.WhiteBoard}>
-        <Note noteType={NoteType.PostItv1} left="200px" top="200px"></Note>
-    </Background>
+    <Projects offsetTop={experienceHeight}></Projects>
 
 </main>

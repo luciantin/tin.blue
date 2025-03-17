@@ -21,6 +21,7 @@
     }
 
     export let bottomHeight: number = 0;
+    export let offsetTop: number = 0;
 
     let introNoteElement: HTMLDivElement | null = null;
     let skillsNoteElement: HTMLDivElement | null = null;
@@ -75,12 +76,14 @@
 
         if(introNoteElement != null) notes.push({element: introNoteElement, coords: htmlElemToCoords(introNoteElement)});
         if(skillsNoteElement != null) notes.push({element: skillsNoteElement, coords: htmlElemToCoords(skillsNoteElement)});
-        if(aboutMeNoteElement != null) notes.push({element: aboutMeNoteElement, coords: htmlElemToCoords(aboutMeNoteElement)});;
+        if(aboutMeNoteElement != null) notes.push({element: aboutMeNoteElement, coords: htmlElemToCoords(aboutMeNoteElement)});
 
         // Populate board with notes
+
+        // console.log(backgroundHeight);
         let bkgheight = backgroundHeight;
         let tmpWidth = 0;
-        let tmpMaxHeight = backgroundElement.getBoundingClientRect().top + 20;
+        let tmpMaxHeight = 100//backgroundElement.getBoundingClientRect().top + 20;
         let tmpMaxElementHeightOnLevel = 0;
 
         let row = []
@@ -103,6 +106,7 @@
                 let sumLen = row.reduce((acc, cur) => acc + cur.element.clientWidth, 0);
                 let margin = (backgroundWidth - sumLen) / (row.length + 1);
                 row.forEach((el, idx) => {
+                    // console.log(idx);
                     el.coords.X1 += margin;
                     el.coords.X2 += margin;
 
@@ -114,8 +118,8 @@
 
             row.push(notes[i]);
 
-            notes[i].coords.Y1 = tmpMaxHeight + heghtDeviation;
-            notes[i].coords.Y2 = tmpMaxHeight + elementHeight + heghtDeviation;
+            notes[i].coords.Y1 = tmpMaxHeight + heghtDeviation + offsetTop;
+            notes[i].coords.Y2 = tmpMaxHeight + elementHeight + heghtDeviation + offsetTop;
 
             notes[i].coords.X1 = tmpWidth;
             notes[i].coords.X2 = tmpWidth + elementWidth;
@@ -129,10 +133,14 @@
             let sumLen = row.reduce((acc, cur) => acc + cur.element.clientWidth, 0);
             let margin = (backgroundWidth - sumLen) / (row.length + 1);
 
+            // console.log(margin);
+
             row.forEach((el, idx) => {
 
                 el.coords.X1 += margin*(idx+1);
                 el.coords.X2 += margin*(idx+1);
+
+                // console.log(`X1: ${el.coords.X1}, X2: ${el.coords.X2}, margin: ${margin}, idx: ${idx}`);
 
                 el.element.style.left = el.coords.X1 + "px";
                 el.element.style.top = el.coords.Y1 + "px";
@@ -141,17 +149,17 @@
 
         bottomHeight = bkgheight;
         backgroundHeight = bkgheight
-        backgroundStyle = `min-height: ${bkgheight}px;`;
+        backgroundStyle = `min-height: ${bkgheight - offsetTop}px;`;
 
         // Create board objects
         boardObjects = [];
-        let numOfObjects = 8;
+        let numOfObjects = 0;
         while(boardObjects.length < numOfObjects) {
             let pinSize = 32;
             let pinType = pinTypes[Math.floor(Math.random() * pinTypes.length)];
             let pinRotation = 3 + Math.floor(Math.random() * 20);
             let pinLeft = Math.floor(Math.random() * (backgroundWidth - 20)) + 20;
-            let pinTop = Math.floor(Math.random() * (backgroundHeight - 20)) + 20;
+            let pinTop = Math.floor(Math.random() * (backgroundHeight - 20)) + 20 + offsetTop;
 
             if(!notes.map(q => isPointInCoords(pinLeft, pinTop, pinLeft+pinSize, pinTop+pinSize, q.coords)).includes(true)) {
                 if(pinTop + pinSize > backgroundHeight - 20) pinTop = pinTop - 12;
@@ -165,16 +173,16 @@
         }
 
         //Note pins
-        for(let i = 0; i < notes.length; i++) {
-            let pinTop = notes[i].coords.Y1 - 16;
-            let pinLeft = notes[i].coords.X1 + (notes[i].element.clientWidth / 2);
-            boardObjects.push({
-                type: i == 0 ? BoardObjectType.Pinv1Blue : pinTypes[Math.floor(Math.random() * pinTypes.length)],
-                left: pinLeft + "px",
-                top: pinTop + "px",
-                rotation: Math.floor(Math.random() * 20),
-            })
-        }
+        // for(let i = 0; i < notes.length; i++) {
+        //     let pinTop = notes[i].coords.Y1 ;
+        //     let pinLeft = notes[i].coords.X1 + (notes[i].element.clientWidth / 2);
+        //     boardObjects.push({
+        //         type: i == 0 ? BoardObjectType.Pinv1Blue : pinTypes[Math.floor(Math.random() * pinTypes.length)],
+        //         left: pinLeft + "px",
+        //         top: pinTop + "px",
+        //         rotation: Math.floor(Math.random() * 20),
+        //     })
+        // }
     }
 
     onMount(() => {
@@ -188,7 +196,7 @@
 </script>
 
 
-<Background backgroundType={BackgroundType.CorkBoard} bind:style={backgroundStyle} bind:node={backgroundElement}>
+<Background backgroundType={BackgroundType.Paper} bind:style={backgroundStyle} bind:node={backgroundElement}>
 
     {#each boardObjects as obj}
         <BoardObject
@@ -199,56 +207,34 @@
         />
     {/each}
 
-<!--    <BoardObject type={BoardObjectType.Pinv1Blue} left="300px" top="77px" rotation={24}></BoardObject>-->
-    <Note left={introNoteElementLeft} top={introNoteElementTop} noteType={NoteType.Notev1} bind:noteRef={introNoteElement}>
+    <!--    <BoardObject type={BoardObjectType.Pinv1Blue} left="300px" top="77px" rotation={24}></BoardObject>-->
+    <Note left={introNoteElementLeft} top={introNoteElementTop} noteType={NoteType.Polaroidv1} bind:noteRef={introNoteElement}>
         <div style="display: flex;flex-direction: column;justify-content: space-evenly">
             <p>👋 Hey, I'm Tin,</p>
-            <p>a full-stack developer passionate about real-time systems, microservices, and embedded platforms, with over 4 years of professional experience.</p>
             <p>Available to chat anytime.</p>
-            <p>Let's build something amazing together!</p>
-
-            <div style="height: 10px"></div>
-            <div style="display: flex;flex-direction: row;justify-content: space-evenly;flex-grow: 2">
-                <Icon
-                        url="https://www.github.com/luciantin"
-                        icon="fab fa-github"
-                />
-                <Icon
-                        url="mailto:luciantin@gmail.com"
-                        icon="fa-solid fa-envelope"
-                />
-                <Icon
-                        url="https://www.linkedin.com/in/lucian-tin/"
-                        icon="fab fa-linkedin"
-                />
-            </div>
         </div>
     </Note>
 
-<!--    <BoardObject type={BoardObjectType.Pinv1Green} left="1230px" top="110px" rotation={24}></BoardObject>-->
-    <Note left={skillsNoteElementLeft} top={skillsNoteElementTop} noteType={NoteType.Paperv1} rotation={-1} bind:noteRef={skillsNoteElement}>
+    <!--    <BoardObject type={BoardObjectType.Pinv1Green} left="1230px" top="110px" rotation={24}></BoardObject>-->
+    <Note left={skillsNoteElementLeft} top={skillsNoteElementTop} noteType={NoteType.Polaroidv1} rotation={-1} bind:noteRef={skillsNoteElement}>
         <div style="display: flex;flex-direction: column; line-height: 1.13;">
             <p>🛠️ Skills:</p>
             <p>.NET Core, Golang, Python, C, C++</p>
             <p>Flutter, React, Blazor</p>
-            <p>PostgreSQL, MariaDB, SQL Server</p>
-            <p>Docker, Docker Compose, CI/CD Pipelines, Git, Bash</p>
-            <p>Espressif, Particle</p>
-            <p>ARM Firmware Development</p>
         </div>
     </Note>
 
 
 
-<!--    <BoardObject type={BoardObjectType.Pinv1Red} left="820px" top="190px" rotation={24}></BoardObject>-->
-    <Note left={aboutMeNoteElementLeft} top={aboutMeNoteElementTop} noteType={NoteType.Paperv1} rotation={2} bind:noteRef={aboutMeNoteElement}>
-        <div style="display: flex;flex-direction: column; line-height: 1.1;">
-            <p>🚀 About Me:</p>
-            <p>Languages: English, Italian, Croatian</p>
-            <p>Bachelor of Informatics</p>
-            <p>Based in Pula, Croatia</p>
-            <p>Flexible, pragmatic and adaptable</p>
-        </div>
-    </Note>
+    <!--    &lt;!&ndash;    <BoardObject type={BoardObjectType.Pinv1Red} left="820px" top="190px" rotation={24}></BoardObject>&ndash;&gt;-->
+    <!--    <Note left={aboutMeNoteElementLeft} top={aboutMeNoteElementTop} noteType={NoteType.PostItv1} rotation={2} bind:noteRef={aboutMeNoteElement}>-->
+    <!--        <div style="display: flex;flex-direction: column; line-height: 1.1;">-->
+    <!--            <p>🚀 About Me:</p>-->
+    <!--            <p>Languages: English, Italian, Croatian</p>-->
+    <!--            <p>Bachelor of Informatics</p>-->
+    <!--            <p>Based in Pula, Croatia</p>-->
+    <!--            <p>Flexible, pragmatic and adaptable</p>-->
+    <!--        </div>-->
+    <!--    </Note>-->
 
 </Background>
