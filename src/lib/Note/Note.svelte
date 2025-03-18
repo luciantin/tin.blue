@@ -52,8 +52,6 @@
 
     .Note {
       position: absolute;
-      //left: 50px;
-      //top: 50px;
       display: inline-block;
       min-width: 50px;
       min-height: 50px;

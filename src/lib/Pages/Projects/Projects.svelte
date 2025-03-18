@@ -153,7 +153,7 @@
 
         // Create board objects
         boardObjects = [];
-        let numOfObjects = 0;
+        let numOfObjects = 20;
         while(boardObjects.length < numOfObjects) {
             let pinSize = 32;
             let pinType = pinTypes[Math.floor(Math.random() * pinTypes.length)];
@@ -196,7 +196,7 @@
 </script>
 
 
-<Background backgroundType={BackgroundType.Paper} bind:style={backgroundStyle} bind:node={backgroundElement}>
+<Background backgroundType={BackgroundType.Canvas} bind:style={backgroundStyle} bind:node={backgroundElement}>
 
     {#each boardObjects as obj}
         <BoardObject
@@ -211,7 +211,6 @@
     <Note left={introNoteElementLeft} top={introNoteElementTop} noteType={NoteType.Polaroidv1} bind:noteRef={introNoteElement}>
         <div style="display: flex;flex-direction: column;justify-content: space-evenly">
             <p>👋 Hey, I'm Tin,</p>
-            <p>Available to chat anytime.</p>
         </div>
     </Note>
 
@@ -219,8 +218,6 @@
     <Note left={skillsNoteElementLeft} top={skillsNoteElementTop} noteType={NoteType.Polaroidv1} rotation={-1} bind:noteRef={skillsNoteElement}>
         <div style="display: flex;flex-direction: column; line-height: 1.13;">
             <p>🛠️ Skills:</p>
-            <p>.NET Core, Golang, Python, C, C++</p>
-            <p>Flutter, React, Blazor</p>
         </div>
     </Note>
 

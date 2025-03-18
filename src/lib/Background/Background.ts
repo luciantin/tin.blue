@@ -1,5 +1,6 @@
 export enum BackgroundType {
     Paper = "Paper",
     CorkBoard = "CorkBoard",
-    WhiteBoard = "WhiteBoard"
+    WhiteBoard = "WhiteBoard",
+    Canvas = "Canvas"
 }

@@ -199,7 +199,6 @@
         />
     {/each}
 
-<!--    <BoardObject type={BoardObjectType.Pinv1Blue} left="300px" top="77px" rotation={24}></BoardObject>-->
     <Note left={introNoteElementLeft} top={introNoteElementTop} noteType={NoteType.Notev1} bind:noteRef={introNoteElement}>
         <div style="display: flex;flex-direction: column;justify-content: space-evenly">
             <p>👋 Hey, I'm Tin,</p>
@@ -225,22 +224,18 @@
         </div>
     </Note>
 
-<!--    <BoardObject type={BoardObjectType.Pinv1Green} left="1230px" top="110px" rotation={24}></BoardObject>-->
     <Note left={skillsNoteElementLeft} top={skillsNoteElementTop} noteType={NoteType.Paperv1} rotation={-1} bind:noteRef={skillsNoteElement}>
         <div style="display: flex;flex-direction: column; line-height: 1.13;">
             <p>🛠️ Skills:</p>
-            <p>.NET Core, Golang, Python, C, C++</p>
-            <p>Flutter, React, Blazor</p>
-            <p>PostgreSQL, MariaDB, SQL Server</p>
-            <p>Docker, Docker Compose, CI/CD Pipelines, Git, Bash</p>
-            <p>Espressif, Particle</p>
-            <p>ARM Firmware Development</p>
+            <p>C#, Go, Python, C, C++</p>
+            <p>Flutter (4 professional public apps)</p>
+            <p>React and Blazor admin interfaces</p>
+            <p>SQL Server, PostgresSQL, MariaDB</p>
+            <p style="line-height: 1.0">Docker Compose, Gitlab CI/CD, Bash</p>
+            <p style="line-height: 1.0">Production services and applications on the Espressif, Particle and ARM platforms</p>
         </div>
     </Note>
 
-
-
-<!--    <BoardObject type={BoardObjectType.Pinv1Red} left="820px" top="190px" rotation={24}></BoardObject>-->
     <Note left={aboutMeNoteElementLeft} top={aboutMeNoteElementTop} noteType={NoteType.Paperv1} rotation={2} bind:noteRef={aboutMeNoteElement}>
         <div style="display: flex;flex-direction: column; line-height: 1.1;">
             <p>🚀 About Me:</p>

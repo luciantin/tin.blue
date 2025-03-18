@@ -23,21 +23,15 @@
     export let bottomHeight: number = 0;
     export let offsetTop: number = 0;
 
-    let introNoteElement: HTMLDivElement | null = null;
-    let skillsNoteElement: HTMLDivElement | null = null;
-    let aboutMeNoteElement: HTMLDivElement | null = null;
+    let pentaNoteElement: HTMLDivElement | null = null;
+    let amandoNoteElement: HTMLDivElement | null = null;
+    let paperANoteElement: HTMLDivElement | null = null;
+    let paperBNoteElement: HTMLDivElement | null = null;
 
     let boardObjects: Array<BoardObjectProps> = [];
 
     let backgroundElement: HTMLElement | null = null;
     let backgroundStyle = "";
-
-    $: introNoteElementTop = "0px";
-    $: introNoteElementLeft = "0px";
-    $: skillsNoteElementTop = "0px";
-    $: skillsNoteElementLeft = "0px";
-    $: aboutMeNoteElementTop = "0px";
-    $: aboutMeNoteElementLeft = "0px";
 
     function htmlElemToCoords(element : HTMLElement) : Coords {
         let rect = element.getBoundingClientRect();
@@ -74,9 +68,10 @@
 
         let notes: Array<ElementDivCoords> = []
 
-        if(introNoteElement != null) notes.push({element: introNoteElement, coords: htmlElemToCoords(introNoteElement)});
-        if(skillsNoteElement != null) notes.push({element: skillsNoteElement, coords: htmlElemToCoords(skillsNoteElement)});
-        if(aboutMeNoteElement != null) notes.push({element: aboutMeNoteElement, coords: htmlElemToCoords(aboutMeNoteElement)});
+        if(pentaNoteElement != null) notes.push({element: pentaNoteElement, coords: htmlElemToCoords(pentaNoteElement)});
+        if(amandoNoteElement != null) notes.push({element: amandoNoteElement, coords: htmlElemToCoords(amandoNoteElement)});
+        if(paperANoteElement != null) notes.push({element: paperANoteElement, coords: htmlElemToCoords(paperANoteElement)});
+        if(paperBNoteElement != null) notes.push({element: paperBNoteElement, coords: htmlElemToCoords(paperBNoteElement)});
 
         // Populate board with notes
 
@@ -207,34 +202,39 @@
         />
     {/each}
 
-    <!--    <BoardObject type={BoardObjectType.Pinv1Blue} left="300px" top="77px" rotation={24}></BoardObject>-->
-    <Note left={introNoteElementLeft} top={introNoteElementTop} noteType={NoteType.PostItv1} bind:noteRef={introNoteElement}>
+    <Note noteType={NoteType.PostItv1} bind:noteRef={pentaNoteElement}>
         <div style="display: flex;flex-direction: column;justify-content: space-evenly">
-            <p>👋 Hey, I'm Tin,</p>
-            <p>Available to chat anytime.</p>
+            <p>🛠️ Penta - Software Engineer (2022 - Present)</p>
+            <p>Designed and implemented real-time microservices in C#, deployed with Docker.</p>
+            <p>Built multiple smart signage React applications with real-time updates over MQTT.</p>
+            <p>Developed Go/Python/C services for embedded devices</p>
+            <p>Maintained, enhanced and deployed legacy C# applications critical to business operations.</p>
         </div>
     </Note>
 
-    <!--    <BoardObject type={BoardObjectType.Pinv1Green} left="1230px" top="110px" rotation={24}></BoardObject>-->
-    <Note left={skillsNoteElementLeft} top={skillsNoteElementTop} noteType={NoteType.PostItv1} rotation={(-10+Math.random() * 20)} bind:noteRef={skillsNoteElement}>
+    <Note noteType={NoteType.PostItv1} rotation={(-10+Math.random() * 20)} bind:noteRef={amandoNoteElement}>
         <div style="display: flex;flex-direction: column; line-height: 1.13;">
             <p>🛠️ Skills:</p>
-            <p>.NET Core, Golang, Python, C, C++</p>
-            <p>Flutter, React, Blazor</p>
+            <p>Collaborated with an external API provider to develop a React plugin for an existing WordPress website</p>
+            <p>Integrated API data combining it with PHP for smooth functionality</p>
         </div>
     </Note>
 
+    <Note noteType={NoteType.PostItv1} rotation={(-10+Math.random() * 20)} bind:noteRef={paperANoteElement}>
+        <div style="display: flex;flex-direction: column; line-height: 1.13;">
+            <p>📄 Optimized Embedded System Performance</p>
+            <p>Researched real-time processing optimizations for embedded platforms.</p>
+            <p>Developed a lightweight scheduling algorithm to reduce latency.</p>
+        </div>
+    </Note>
 
-
-<!--    &lt;!&ndash;    <BoardObject type={BoardObjectType.Pinv1Red} left="820px" top="190px" rotation={24}></BoardObject>&ndash;&gt;-->
-<!--    <Note left={aboutMeNoteElementLeft} top={aboutMeNoteElementTop} noteType={NoteType.PostItv1} rotation={2} bind:noteRef={aboutMeNoteElement}>-->
-<!--        <div style="display: flex;flex-direction: column; line-height: 1.1;">-->
-<!--            <p>🚀 About Me:</p>-->
-<!--            <p>Languages: English, Italian, Croatian</p>-->
-<!--            <p>Bachelor of Informatics</p>-->
-<!--            <p>Based in Pula, Croatia</p>-->
-<!--            <p>Flexible, pragmatic and adaptable</p>-->
-<!--        </div>-->
-<!--    </Note>-->
+    <Note noteType={NoteType.PostItv1} rotation={2} bind:noteRef={paperBNoteElement}>
+        <div style="display: flex;flex-direction: column; line-height: 1.1;">
+            <p>📑 Efficient Data Synchronization in Distributed Systems</p>
+            <p>Proposed a novel approach for syncing data across decentralized nodes</p>
+            <p>Focused on improving consistency and reducing sync time.</p>
+            <p>Published in IEEE</p>
+        </div>
+    </Note>
 
 </Background>

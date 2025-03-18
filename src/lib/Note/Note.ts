@@ -31,6 +31,8 @@ export function GetNoteBBProportion(noteType: NoteType): [number, number, number
             return [0.075, 0.16, 0.8, 0.4, -1];
         case NoteType.Paperv1:
             return [0.25, 0.03, 0.6, 0.8, 0];
+        case NoteType.Polaroidv1:
+            return [0.12, 0.8, 0.6, 0.8, 0];
     }
     return [0, 0, 0, 0, 0];
 }
