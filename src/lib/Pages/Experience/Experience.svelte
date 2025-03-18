@@ -70,8 +70,8 @@
 
         if(pentaNoteElement != null) notes.push({element: pentaNoteElement, coords: htmlElemToCoords(pentaNoteElement)});
         if(amandoNoteElement != null) notes.push({element: amandoNoteElement, coords: htmlElemToCoords(amandoNoteElement)});
-        if(paperANoteElement != null) notes.push({element: paperANoteElement, coords: htmlElemToCoords(paperANoteElement)});
         if(paperBNoteElement != null) notes.push({element: paperBNoteElement, coords: htmlElemToCoords(paperBNoteElement)});
+        if(paperANoteElement != null) notes.push({element: paperANoteElement, coords: htmlElemToCoords(paperANoteElement)});
 
         // Populate board with notes
 
@@ -203,7 +203,7 @@
     {/each}
 
     <Note noteType={NoteType.PostItv1} bind:noteRef={pentaNoteElement}>
-        <div style="display: flex;flex-direction: column;justify-content: space-evenly">
+        <div style="display: flex;flex-direction: column;justify-content: space-evenly ; line-height: 1.1;">
             <p>🛠️ Penta - Software Engineer (2022 - Present)</p>
             <p>Designed and implemented real-time microservices in C#, deployed with Docker.</p>
             <p>Built multiple smart signage React applications with real-time updates over MQTT.</p>
@@ -212,29 +212,30 @@
         </div>
     </Note>
 
-    <Note noteType={NoteType.PostItv1} rotation={(-10+Math.random() * 20)} bind:noteRef={amandoNoteElement}>
+    <Note noteType={NoteType.PostItv1} rotation={(-2+Math.random() * 4)} bind:noteRef={amandoNoteElement}>
         <div style="display: flex;flex-direction: column; line-height: 1.13;">
-            <p>🛠️ Skills:</p>
+            <p>🛠️ Software Developer (2022)</p>
             <p>Collaborated with an external API provider to develop a React plugin for an existing WordPress website</p>
-            <p>Integrated API data combining it with PHP for smooth functionality</p>
-        </div>
-    </Note>
-
-    <Note noteType={NoteType.PostItv1} rotation={(-10+Math.random() * 20)} bind:noteRef={paperANoteElement}>
-        <div style="display: flex;flex-direction: column; line-height: 1.13;">
-            <p>📄 Optimized Embedded System Performance</p>
-            <p>Researched real-time processing optimizations for embedded platforms.</p>
-            <p>Developed a lightweight scheduling algorithm to reduce latency.</p>
+            <p>Integrated API data combining Wordpress PHP with React components for smooth functionality</p>
         </div>
     </Note>
 
     <Note noteType={NoteType.PostItv1} rotation={2} bind:noteRef={paperBNoteElement}>
         <div style="display: flex;flex-direction: column; line-height: 1.1;">
-            <p>📑 Efficient Data Synchronization in Distributed Systems</p>
-            <p>Proposed a novel approach for syncing data across decentralized nodes</p>
-            <p>Focused on improving consistency and reducing sync time.</p>
-            <p>Published in IEEE</p>
+            <p>📑 Published "Dew‑based Service Orchestration Model For Systems Spanning
+                Multiple Computing Layers"</p>
+            <p>Proposed a functionality graph model for orchestrating services across multi-layered systems, leveraging Python, React, C#, and Kubernetes for distributed service management.</p>
+            <a href="https://ieeexplore.ieee.org/document/9596638" style="text-decoration: none">📘 Published in IEEE</a>
         </div>
     </Note>
+
+    <Note noteType={NoteType.PostItv1} rotation={(-2+Math.random() * 4)} bind:noteRef={paperANoteElement}>
+        <div style="display: flex;flex-direction: column; line-height: 1.13;">
+            <p>📄 Published "Orchestration Of Distributed Web Applications On Integrated Systems"</p>
+            <p>Developed a framework abstracting microcontroller architectures to enable hardware-independent software development and orchestration.</p>
+            <p>WebAssembly "Docker" for microcontrollers.</p>
+        </div>
+    </Note>
+
 
 </Background>

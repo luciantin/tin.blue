@@ -7,6 +7,8 @@
     import BoardObject from "../../BoardObject/BoardObject.svelte";
     import {type BoardObjectProps, BoardObjectType} from "../../BoardObject/BoardObject";
     import {onMount} from "svelte";
+    import ImageFrame from "../../ImageFrame/ImageFrame.svelte";
+    import {ImageFrameType} from "../../ImageFrame/ImageFrame";
 
     interface Coords {
         X1: number;
@@ -111,7 +113,7 @@
                     el.coords.X2 += margin;
 
                     el.element.style.left = el.coords.X1 + "px";
-                    el.element.style.top = el.coords.Y1 + "px";
+                    el.element.style.top = el.coords.Y1 + 100 + "px";
                 })
                 row = [];
             }
@@ -143,7 +145,7 @@
                 // console.log(`X1: ${el.coords.X1}, X2: ${el.coords.X2}, margin: ${margin}, idx: ${idx}`);
 
                 el.element.style.left = el.coords.X1 + "px";
-                el.element.style.top = el.coords.Y1 + "px";
+                el.element.style.top = el.coords.Y1 + 100 + "px";
             })
         }
 
@@ -153,7 +155,7 @@
 
         // Create board objects
         boardObjects = [];
-        let numOfObjects = 20;
+        let numOfObjects = 0;
         while(boardObjects.length < numOfObjects) {
             let pinSize = 32;
             let pinType = pinTypes[Math.floor(Math.random() * pinTypes.length)];
@@ -208,18 +210,18 @@
     {/each}
 
     <!--    <BoardObject type={BoardObjectType.Pinv1Blue} left="300px" top="77px" rotation={24}></BoardObject>-->
-    <Note left={introNoteElementLeft} top={introNoteElementTop} noteType={NoteType.Polaroidv1} bind:noteRef={introNoteElement}>
+    <ImageFrame left={introNoteElementLeft} top={introNoteElementTop} imageFrameType={ImageFrameType.Polaroidv1} bind:noteRef={introNoteElement}>
         <div style="display: flex;flex-direction: column;justify-content: space-evenly">
             <p>👋 Hey, I'm Tin,</p>
         </div>
-    </Note>
+    </ImageFrame>
 
-    <!--    <BoardObject type={BoardObjectType.Pinv1Green} left="1230px" top="110px" rotation={24}></BoardObject>-->
-    <Note left={skillsNoteElementLeft} top={skillsNoteElementTop} noteType={NoteType.Polaroidv1} rotation={-1} bind:noteRef={skillsNoteElement}>
+<!--    &lt;!&ndash;    <BoardObject type={BoardObjectType.Pinv1Green} left="1230px" top="110px" rotation={24}></BoardObject>&ndash;&gt;-->
+    <ImageFrame left={skillsNoteElementLeft} top={skillsNoteElementTop} imageFrameType={ImageFrameType.Polaroidv1} rotation={-1} bind:noteRef={skillsNoteElement}>
         <div style="display: flex;flex-direction: column; line-height: 1.13;">
             <p>🛠️ Skills:</p>
         </div>
-    </Note>
+    </ImageFrame>
 
 
 

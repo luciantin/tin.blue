@@ -232,7 +232,7 @@
             <p>React and Blazor admin interfaces</p>
             <p>SQL Server, PostgresSQL, MariaDB</p>
             <p style="line-height: 1.0">Docker Compose, Gitlab CI/CD, Bash</p>
-            <p style="line-height: 1.0">Production services and applications on the Espressif, Particle and ARM platforms</p>
+            <p style="line-height: 1.3">Production services and applications on the Espressif, Particle and ARM platforms</p>
         </div>
     </Note>
 
