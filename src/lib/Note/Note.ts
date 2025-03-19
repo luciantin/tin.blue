@@ -37,7 +37,7 @@ export function GetNoteBBProportion(noteType: NoteType): [number, number, number
     return [0, 0, 0, 0, 0];
 }
 
-
+//
 // right left top bottom
 export function GetMarginX(noteType: NoteType): [number, number, number, number]{
     switch (noteType) {
