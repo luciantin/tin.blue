@@ -214,7 +214,7 @@
 
     <Note noteType={NoteType.PostItv1} rotation={(-2+Math.random() * 4)} bind:noteRef={amandoNoteElement}>
         <div style="display: flex;flex-direction: column; line-height: 1.13;">
-            <p>🛠️ Software Developer (2022)</p>
+            <p>🛠️ Amando - Software Developer (2022)</p>
             <p>Collaborated with an external API provider to develop a React plugin for an existing WordPress website</p>
             <p>Integrated API data combining Wordpress PHP with React components for smooth functionality</p>
         </div>

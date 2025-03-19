@@ -210,16 +210,16 @@
     {/each}
 
     <!--    <BoardObject type={BoardObjectType.Pinv1Blue} left="300px" top="77px" rotation={24}></BoardObject>-->
-    <ImageFrame left={introNoteElementLeft} top={introNoteElementTop} imageFrameType={ImageFrameType.Polaroidv1} bind:noteRef={introNoteElement}>
+    <ImageFrame imagePath="/images/projects/mrz2.PNG" imageStyle="z-index: 400; width: 276px; height: 302px; left: 62px; top: 23px;" left={introNoteElementLeft} top={introNoteElementTop} imageFrameType={ImageFrameType.Polaroidv1} bind:noteRef={introNoteElement}>
         <div style="display: flex;flex-direction: column;justify-content: space-evenly">
-            <p>👋 Hey, I'm Tin,</p>
+            <p style="text-align: center">Neural Network Model for <a href="https://github.com/luciantin/MRZ-Detector">Passport MRZ Detection</a>, Trained in Python</p>
         </div>
     </ImageFrame>
 
 <!--    &lt;!&ndash;    <BoardObject type={BoardObjectType.Pinv1Green} left="1230px" top="110px" rotation={24}></BoardObject>&ndash;&gt;-->
-    <ImageFrame left={skillsNoteElementLeft} top={skillsNoteElementTop} imageFrameType={ImageFrameType.Polaroidv1} rotation={-1} bind:noteRef={skillsNoteElement}>
+    <ImageFrame imagePath="/images/projects/cmatrix.png" imageStyle="z-index: 400; width: 275px; height: 300px; left: 62px; top: 23px;"  left={skillsNoteElementLeft} top={skillsNoteElementTop} imageFrameType={ImageFrameType.Polaroidv1} rotation={-1} bind:noteRef={skillsNoteElement}>
         <div style="display: flex;flex-direction: column; line-height: 1.13;">
-            <p>🛠️ Skills:</p>
+            <p style="text-align: center">Machine learning Matrix operations in C from scratch on <a href="https://github.com/luciantin/CMatrix/tree/main">Git</a></p>
         </div>
     </ImageFrame>
 

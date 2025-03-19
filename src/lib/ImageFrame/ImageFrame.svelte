@@ -7,6 +7,7 @@
     export let top: string = "0px";
     export let rotation: number = 0;
     export let imagePath: string = "";
+    export let imageStyle: string = "";
 
     $: backgroundImage = `/images/notes/${imageFrameType}.svg`;
 
@@ -44,7 +45,7 @@
 </script>
 
 <div class="Note" bind:this={noteRef} style={noteStyle}>
-    <img class="Note-Bg" src="{imagePath}" alt="" />
+    <img style={imageStyle} class="Note-Bg" src="{imagePath}" alt="" />
     <div class="Note-Content font-schoolbell-regular" bind:this={noteContentRef} style={contentStyle}>
         <slot></slot>
     </div>
