@@ -21,7 +21,7 @@ export enum NoteType {
 // │          │       │    │
 // │          └───────┘    │
 // └───────────────────────┘
-
+//
 // [ Xo, Yo, Xr, Yr ]
 export function GetNoteBBProportion(noteType: NoteType): [number, number, number, number, number] {
     switch (noteType) {
